@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central de Comando Digital - O Caminho</title>
+    <title>Central de Comando - O Caminho</title>
     <style>
         :root {
-            --bg-deep: #08090d;
-            --panel-glass: rgba(13, 15, 22, 0.75);
+            --bg-deep: #0d0e12;
+            --panel-glass: rgba(13, 14, 18, 0.95);
             --gold-glow: linear-gradient(135deg, #dfb76c, #c29947);
             --gold-pure: #dfb76c;
-            --left-neon: #00ff66;
-            --right-neon: #dfb76c;
-            --center-cyan: #00f0ff;
+            --cyan-glow: #00f0ff;
             --text-light: #e2e8f0;
         }
 
@@ -27,116 +25,29 @@
         body {
             background-color: var(--bg-deep);
             background-image: 
-                radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.05), transparent 70%),
-                linear-gradient(rgba(18, 20, 28, 0.4) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(18, 20, 28, 0.4) 1px, transparent 1px);
-            background-size: 100% 100%, 30px 30px, 30px 30px;
+                radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.03), transparent 70%),
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 25px 25px, 25px 25px;
             color: var(--text-light);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* TELA DE SEGURANÇA (LOCKSCREEN) */
-        #lock-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 9, 13, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.5s ease;
-        }
-
-        .scanner-line {
-            width: 100%;
-            height: 4px;
-            background: var(--center-cyan);
-            box-shadow: 0 0 20px var(--center-cyan);
-            position: absolute;
-            top: 0;
-            animation: scan 4s infinite linear;
-        }
-
-        @keyframes scan {
-            0% { top: 0%; }
-            50% { top: 100%; }
-            100% { top: 0%; }
-        }
-
-        .login-box {
-            background: var(--panel-glass);
-            border: 1px solid rgba(223, 183, 108, 0.3);
-            border-radius: 16px;
-            padding: 40px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-            position: relative;
-        }
-
-        .login-box h2 {
-            color: var(--gold-pure);
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-            font-size: 1.5rem;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 8px;
-            color: #fff;
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-            outline: none;
-        }
-
-        .login-box input:focus {
-            border-color: var(--center-cyan);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-        }
-
-        .login-box button {
-            background: var(--gold-glow);
-            border: none;
-            padding: 12px 30px;
-            color: #000;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-
-        .login-box button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(223, 183, 108, 0.5);
-        }
-
-        /* HUD PRINCIPAL */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            background: rgba(13, 15, 22, 0.9);
+            padding: 15px 30px;
+            background: rgba(13, 14, 18, 0.98);
             border-bottom: 1px solid rgba(223, 183, 108, 0.2);
         }
 
         .brand-container {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             border: 2px dashed var(--gold-pure);
             display: flex;
@@ -153,174 +64,107 @@
             object-fit: contain;
         }
 
-        .brand-placeholder {
-            font-size: 0.7rem;
-            color: var(--gold-pure);
-            text-align: center;
-            font-weight: bold;
-        }
-
         header h1 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             text-align: center;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             background: linear-gradient(90deg, #fff, var(--gold-pure), #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(223, 183, 108, 0.3);
         }
 
-        /* GRID DA OPERAÇÃO */
         main {
             display: grid;
-            grid-template-columns: 1fr 420px 1fr;
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: 1fr 380px 1fr;
+            gap: 15px;
+            padding: 15px;
             flex: 1;
-            max-width: 1920px;
-            margin: 0 auto;
             width: 100%;
+            max-width: 100%;
         }
 
         .side-column {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .module-block {
             background: var(--panel-glass);
-            border-radius: 12px;
-            padding: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.02);
-            position: relative;
-        }
-
-        .left-column .module-block {
-            border-left: 3px solid var(--left-neon);
-        }
-
-        .right-column .module-block {
-            border-right: 3px solid var(--right-neon);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid rgba(223, 183, 108, 0.1);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .module-title {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            color: var(--gold-pure);
+            border-bottom: 1px solid rgba(223, 183, 108, 0.15);
+            padding-bottom: 4px;
         }
-
-        .left-column .module-title { color: var(--left-neon); }
-        .right-column .module-title { color: var(--right-neon); }
 
         .button-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 8px;
+            flex: 1;
         }
 
-        /* BOTÕES DO MENU HOLOGRÁFICO */
         .hud-btn {
-            background: rgba(20, 24, 35, 0.6);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            padding: 12px 10px;
+            background: rgba(18, 20, 26, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 10px;
             color: var(--text-light);
             text-decoration: none;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: flex-start;
-            position: relative;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
+            transition: all 0.2s ease;
+            position: relative;
         }
 
-        .hud-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
-            opacity: 0.5;
-        }
-
-        .left-column .hud-btn:hover {
-            border-color: var(--left-neon);
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
-            background: rgba(0, 255, 102, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .right-column .hud-btn:hover {
-            border-color: var(--right-neon);
-            box-shadow: 0 0 15px rgba(223, 183, 108, 0.25);
-            background: rgba(223, 183, 108, 0.05);
-            transform: translateY(-2px);
+        .hud-btn:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            background: rgba(0, 240, 255, 0.02);
+            transform: translateY(-1px);
         }
 
         .btn-title {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
-            margin-bottom: 2px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             width: 100%;
-            position: relative;
-            z-index: 2;
         }
 
-        .btn-tag {
-            font-size: 0.65rem;
-            opacity: 0.5;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .btn-icon-slot {
-            position: absolute;
-            right: 8px;
-            bottom: 6px;
-            width: 18px;
-            height: 18px;
-            opacity: 0.15;
-            transition: opacity 0.3s;
-        }
-
-        .hud-btn:hover .btn-icon-slot {
-            opacity: 0.7;
-        }
-
-        .hud-btn-empty {
-            border: 1px dashed rgba(223, 183, 108, 0.25) !important;
-            background: transparent !important;
-        }
-
-        /* NÚCLEO CENTRAL TÁTICO */
         .center-column {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            border-left: 1px solid rgba(0, 240, 255, 0.05);
-            border-right: 1px solid rgba(0, 240, 255, 0.05);
-            background: rgba(0,0,0,0.2);
-            border-radius: 24px;
-            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 10px;
+            border: 1px solid rgba(0, 240, 255, 0.05);
         }
 
         .hologram-stage {
             width: 100%;
-            height: 380px;
+            height: 340px;
             position: relative;
             display: flex;
             justify-content: center;
@@ -328,15 +172,169 @@
         }
 
         .balanca-projection {
-            width: 240px;
-            height: 240px;
+            width: 200px;
+            height: 200px;
             position: relative;
             animation: float 4s infinite ease-in-out;
+        }
+
+        .balanca-projection img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .balanca-vector {
+            width: 100%;
+            height: 100%;
+            stroke: var(--cyan-glow);
+            stroke-width: 1.5;
+            fill: none;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+        }
+
+        .projector-base {
+            position: absolute;
+            bottom: 40px;
+            width: 180px;
+            height: 35px;
+            overflow: hidden;
+        }
+
+        .projector-base img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .base-fallback {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, #14161f, #222736);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50% / 10px;
+            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .projector-beam {
+            position: absolute;
+            bottom: 60px;
+            width: 160px;
+            height: 220px;
+            background: linear-gradient(to top, rgba(0, 240, 255, 0.15), transparent);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+            pointer-events: none;
+        }
+
+        footer {
+            background: #0d0e12;
+            border-top: 1px solid rgba(223, 183, 108, 0.2);
+            padding: 10px 30px;
             display: flex;
+            justify-content: center;
+        }
+
+        .admin-btn {
+            background: transparent;
+            border: 1px solid var(--gold-pure);
+            color: var(--gold-pure);
+            padding: 6px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .admin-btn:hover, .admin-btn.active {
+            background: var(--gold-glow);
+            color: #000;
+            box-shadow: 0 0 10px rgba(223, 183, 108, 0.3);
+        }
+
+        #editor-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: none;
             justify-content: center;
             align-items: center;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-Use o código com cuidado.50% { transform: translateY(-15px) rotate(1deg); }}.balanca-vector {width: 100%;height: 100%;stroke: var(--center-cyan);stroke-width: 1.5;fill: none;filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6));}.projector-base {position: absolute;bottom: 30px;width: 200px;height: 40px;background: linear-gradient(0deg, #10141d, #1a2233);border: 1px solid rgba(0, 240, 255, 0.3);border-radius: 50% / 10px;box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(0, 240, 255, 0.2);}.projector-beam {position: absolute;bottom: 50px;width: 180px;height: 260px;background: linear-gradient(to top, rgba(0, 240, 255, 0.2), transparent);clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);pointer-events: none;animation: pulse-light 3s infinite ease-in-out;}@keyframes pulse-light {0%, 100% { opacity: 0.3; }50% { opacity: 0.6; }}/* CONSOLE INFERIOR */footer {background: #0d0f16;border-top: 1px solid rgba(223, 183, 108, 0.2);padding: 15px 40px;display: flex;justify-content: space-between;align-items: center;}.system-status {font-size: 0.75rem;color: var(--left-neon);letter-spacing: 1px;display: flex;align-items: center;gap: 8px;}.status-dot {width: 6px;height: 6px;background: var(--left-neon);border-radius: 50%;box-shadow: 0 0 8px var(--left-neon);animation: pulse-light 1s infinite;}.control-panel-buttons {display: flex;gap: 15px;}.admin-btn {background: transparent;border: 1px solid var(--gold-pure);color: var(--gold-pure);padding: 8px 20px;border-radius: 4px;cursor: pointer;font-size: 0.8rem;font-weight: bold;text-transform: uppercase;letter-spacing: 1px;transition: all 0.3s;}.admin-btn:hover, .admin-btn.active {background: var(--gold-glow);color: #000;box-shadow: 0 0 15px rgba(223, 183, 108, 0.4);}/* MODAL DE CONFIGURAÇÃO (SCI-FI EDITOR) */#editor-modal {position: fixed;top: 0; left: 0; width: 100%; height: 100%;background: rgba(0,0,0,0.85);backdrop-filter: blur(8px);z-index: 20000;display: none;justify-content: center;align-items: center;}.modal-content {background: #11141d;border: 1px solid var(--gold-pure);border-radius: 12px;width: 90%;max-width: 450px;padding: 30px;box-shadow: 0 0 30px rgba(223, 183, 108, 0.2);}.modal-content h3 {color: var(--gold-pure);margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;}.form-group {margin-bottom: 16px;text-align: left;}.form-group label {display: block;font-size: 0.75rem;text-transform: uppercase;color: rgba(255,255,255,0.6);margin-bottom: 6px;letter-spacing: 0.5px;}.form-group input, .form-group select {width: 100%;padding: 10px;background: rgba(0,0,0,0.4);border: 1px solid rgba(255,255,255,0.1);border-radius: 6px;color: #fff;outline: none;}.form-group input:focus {border-color: var(--center-cyan);}.modal-actions {display: flex;justify-content: flex-end;gap: 10px;margin-top: 25px;}/* RESPONSIVIDADE EXTREMA (MOBILE APP) */@media (max-width: 1200px) {main {grid-template-columns: 1fr;}.center-column {grid-row: 1;height: 320px;}.hologram-stage {height: 260px;}header {padding: 15px 20px;flex-direction: column;gap: 10px;}footer {flex-direction: column;gap: 15px;text-align: center;}}ACESSO AO PROTOCOLOAutenticarTráfego & Redes SociaisMídias & AutomaçãoAgentes & PlataformasEcossistema de IA AvançadaFábrica de E-Books & FlipMódulos de ExpansãoCONEXÃO ENCRIPTADA ATIVAAtivar Modo EdiçãoAlterar Senha do HUDParametrizar MóduloNome do AtalhoSubtexto / TagModo de ExecuçãoAbrir URL ExternaDisparar Webhook (Segundo Plano)URL / Link de DestinoCancelarGravar// CONFIGURAÇÃO DOS 50 BOTÕES INICIAIS DE FÁBRICAconst defaultButtons = {trafego: [{id: 1, title: 'WhatsApp Web', tag: 'Comunicação', url: 'whatsapp.com', type: 'link'},{id: 2, title: 'Instagram', tag: 'Social', url: 'https://instagram.com', type: 'link'},{id: 3, title: 'Facebook Portal', tag: 'Social', url: 'https://facebook.com', type: 'link'},{id: 4, title: 'TikTok Portal', tag: 'Social', url: 'https://tiktok.com', type: 'link'},{id: 5, title: 'Google Ads', tag: 'Tráfego', url: 'google.com', type: 'link'},{id: 6, title: 'Meta Ads', tag: 'Tráfego', url: 'facebook.com', type: 'link'},{id: 7, title: 'TikTok Ads', tag: 'Tráfego', url: 'tiktok.com', type: 'link'},{id: 8, title: 'YouTube Studio', tag: 'Mídia', url: 'youtube.com', type: 'link'}],midias: [{id: 9, title: 'Disparar Feed', tag: 'Instagram', url: 'facebook.com', type: 'link'},{id: 10, title: 'Disparar Stories', tag: 'Instagram', url: 'facebook.com', type: 'link'},{id: 11, title: 'Disparar Reels', tag: 'Instagram', url: 'facebook.com', type: 'link'},{id: 12, title: 'Roteiros Diários', tag: 'Rotina', url: '', type: 'webhook'},{id: 13, title: 'ManyChat Portal', tag: 'Robô Direct', url: 'https://manychat.com', type: 'link'},{id: 14, title: 'CapCut Web', tag: 'Edição Vídeo', url: 'capcut.com', type: 'link'},{id: 15, title: 'Pinterest Trends', tag: 'Pesquisa', url: 'pinterest.com', type: 'link'},{id: 16, title: 'LinkedIn Business', tag: 'Social Professional', url: 'https://linkedin.com', type: 'link'}],vendas: [{id: 17, title: 'Hotmart Dashboard', tag: 'Checkout', url: 'hotmart.com', type: 'link'},{id: 18, title: 'Kiwify Portal', tag: 'Checkout', url: 'kiwify.com.br', type: 'link'},{id: 19, title: 'Eduzz Orbit', tag: 'Checkout', url: 'eduzz.com', type: 'link'},{id: 20, title: 'Monetizze Status', tag: 'Checkout', url: 'https://monetizze.com.br', type: 'link'},{id: 21, title: 'Order Bumps Master', tag: 'Estratégia', url: '', type: 'link'},{id: 22, title: 'Make.com', tag: 'Automação Central', url: 'make.com', type: 'link'},{id: 23, title: 'n8n Automações', tag: 'Agentes IA', url: 'https://n8n.io', type: 'link'},{id: 24, title: 'CrewAI Hub', tag: 'Agentes Multi-IA', url: 'crewai.com', type: 'link'}],ia: [{id: 25, title: 'ChatGPT 4o / o1', tag: 'OpenAI Engine', url: 'https://chatgpt.com', type: 'link'},{id: 26, title: 'Claude 3.5 Sonnet', tag: 'Anthropic Engine', url: 'https://claude.ai', type: 'link'},{id: 27, title: 'DeepSeek V3 / R1', tag: 'Raciocínio IA', url: 'deepseek.com', type: 'link'},{id: 28, title: 'Midjourney Workspace', tag: 'Imagens Arte', url: 'https://midjourney.com', type: 'link'},{id: 29, title: 'Leonardo.ai', tag: 'Fotos Realistas', url: 'https://leonardo.ai', type: 'link'},{id: 30, title: 'v0 by Vercel', tag: 'Frontend IA', url: 'https://v0.dev', type: 'link'},{id: 31, title: 'Kling AI', tag: 'Gerador Vídeos', url: 'https://klingai.com', type: 'link'},{id: 32, title: 'Coze Agentes', tag: 'Robôs Custom', url: 'coze.com', type: 'link'}],ebooks: [{id: 33, title: 'Gamma App', tag: 'Criação Rápida', url: 'https://gamma.app', type: 'link'},{id: 34, title: 'Designrr Portal', tag: 'Diagramação', url: 'https://designrr.io', type: 'link'},{id: 35, title: 'Heyzine Flipbooks', tag: 'Efeito Virar Página', url: 'https://heyzine.com', type: 'link'},{id: 36, title: 'Pexels Coleta', tag: 'Imagens Grátis', url: 'https://pexels.com', type: 'link'},{id: 37, title: 'Storage Central', tag: 'Nuvem Separada', url: 'google.com', type: 'link'},{id: 38, title: 'Documentos Projeto', tag: 'Repositório', url: 'https://notion.so', type: 'link'},{id: 39, title: 'Relatórios Diários', tag: 'Operações', url: '', type: 'webhook'},{id: 40, title: 'Backup Diário', tag: 'Segurança Local', url: '', type: 'webhook'}],expansao: [{id: 41, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 42, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 43, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 44, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 45, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 46, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 47, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 48, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 49, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'},{id: 50, title: 'Sistema Novo +', tag: 'Vazio Disponível', url: '', type: 'link'}]};let currentButtons = JSON.parse(localStorage.getItem('ocaminho_hud_buttons')) || defaultButtons;let isEditMode = false;let activeEditId = null;// VERIFICAÇÃO DE SENHAfunction checkAccess() {const passInput = document.getElementById('hud-pass').value;const savedPass = localStorage.getItem('ocaminho_hud_password') || 'ocaminho2026';if(passInput === savedPass) {document.getElementById('lock-screen').style.opacity = '0';setTimeout(() => document.getElementById('lock-screen').style.display = 'none', 500);renderAllGrids();} else {alert('DIRETRIZ DE ACESSO INCORRETA. ENTRADA NEGADA.');}}function changeSystemPassword() {const current = prompt('Digite a senha atual:');const savedPass = localStorage.getItem('ocaminho_hud_password') || 'ocaminho2026';if(current === savedPass) {const nova = prompt('Digite a nova senha de acesso:');if(nova) {localStorage.setItem('ocaminho_hud_password', nova);alert('Senha atualizada com sucesso!');}} else {alert('Senha atual incorreta.');}}// RENDERIZADOR DOS GRIDSfunction renderAllGrids() {for (const key in currentButtons) {const container = document.getElementById(grid-${key});container.innerHTML = '';currentButtons[key].forEach(btn => {const buttonElement = document.createElement('button');buttonElement.className = hud-btn ${btn.url === '' && btn.type === 'link' ? 'hud-btn-empty' : ''};buttonElement.innerHTML = <div class="btn-title">${btn.title}</div> <div class="btn-tag">${btn.tag || btn.type}</div>;buttonElement.onclick = () => handleButtonClick(btn);container.appendChild(buttonElement);});}}// GERENCIAMENTO DO MODO EDIÇÃOfunction toggleEditMode() {isEditMode = !isEditMode;const btn = document.getElementById('btn-edit-mode');if(isEditMode) {btn.textContent = 'Bloquear Estrutura';btn.classList.add('active');} else {btn.textContent = 'Ativar Modo Edição';btn.classList.remove('active');}}function handleButtonClick(btn) {if(isEditMode) {openEditor(btn);} else {if(btn.type === 'webhook') {triggerWebhook(btn);} else if(btn.url) {window.open(btn.url, '_blank');} else {alert('Nenhum endereço configurado para este botão.');}}}// ACIONADOR DE WEBHOOK EM SEGUNDO PLANOfunction triggerWebhook(btn) {if(!btn.url) {alert(Preencha a URL do webhook para o botão [${btn.title}] no Modo Edição.);return;}fetch(btn.url, {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify({id: btn.id, botao: btn.title, timestamp: new Date()})}).then(() => alert(Protocolo [${btn.title}] executado com sucesso em segundo plano.)).catch(() => alert('Falha ao acionar servidor remoto. Verifique a URL do webhook.'));}// FORMULÁRIO DO EDITORfunction openEditor(btn) {activeEditId = btn.id;document.getElementById('edit-title').value = btn.title;document.getElementById('edit-tag').value = btn.tag;document.getElementById('edit-mode').value = btn.type;document.getElementById('edit-url').value = btn.url;document.getElementById('editor-modal').style.display = 'flex';}function closeModal() {document.getElementById('editor-modal').style.display = 'none';}function saveButtonConfig() {for (const key in currentButtons) {const idx = currentButtons[key].findIndex(b => b.id === activeEditId);if(idx !== -1) {currentButtons[key][idx].title = document.getElementById('edit-title').value;currentButtons[key][idx].tag = document.getElementById('edit-tag').value;currentButtons[key][idx].type = document.getElementById('edit-mode').value;currentButtons[key][idx].url = document.getElementById('edit-url').value;break;}}localStorage.setItem('ocaminho_hud_buttons', JSON.stringify(currentButtons));closeModal();renderAllGrids();}// Permitir pressionar enter na senhadocument.getElementById('hud-pass').addEventListener('keypress', function(e) {if (e.key === 'Enter') checkAccess();});
+        .modal-content {
+            background: #13151b;
+            border: 1px solid var(--gold-pure);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            padding: 25px;
+        }
+
+        .modal-content h3 {
+            color: var(--gold-pure);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--cyan-glow);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            main { grid-template-columns: 1fr; }
+            .center-column { grid-row: 1; height: 280px; }
+            .hologram-stage { height: 220px; }
+            header { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-container">
+            <img src="logo-aguia.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; font-size:0.6rem; color:var(--gold-pure); font-weight:bold;">ÁGUIA</div>
+        </div>
+        <h1>CENTRAL DE COMANDO DIGITAL DO O CAMINHO</h1>
+        <div class="brand-container">
+            <img src="logo-arvore.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; font-size:0.6rem; color:var(--gold-pure); font-weight:bold;">ÁRVORE</div>
